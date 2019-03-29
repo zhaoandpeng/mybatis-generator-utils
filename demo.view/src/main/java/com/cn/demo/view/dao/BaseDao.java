@@ -5,10 +5,12 @@ import java.sql.SQLException;
 
 public interface BaseDao<T, K extends Serializable> {
 
-	T get(String key) throws SQLException ;
+	T get(K key) throws SQLException ;
 
 	boolean saveOrUpdate(T t);
 
 	boolean delete(T t);
+
+//	T get(String key)throws SQLException ;
 
 }

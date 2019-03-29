@@ -1,6 +1,8 @@
 package com.cn.demo.view.service;
 
-public interface BaseUserService<T, K> extends BaseService<T, java.lang.String>{
+import com.cn.demo.view.model.BaseUser;
+
+public interface BaseUserService extends BaseService<BaseUser, java.lang.String>{
 
 	
 }
