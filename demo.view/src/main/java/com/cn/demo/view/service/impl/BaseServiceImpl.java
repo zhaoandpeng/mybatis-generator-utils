@@ -16,12 +16,11 @@ public class BaseServiceImpl<T, K> implements BaseService<T,java.lang.String>{
 	private BaseDao<T,java.lang.String> baseDao;
 	
 	
-	private Class<T> clazz;
 	
 	@Override
-	public T get(String key) throws SQLException {
+	public T get(Class<T> clazz, String key) throws SQLException {
 		
-		return (T) baseDao.get(key);
+		return (T) baseDao.get(clazz, key);
 	}
 
 	@Override

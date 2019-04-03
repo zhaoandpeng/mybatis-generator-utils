@@ -7,6 +7,7 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.cn.demo.view.model.BaseUser;
 import com.cn.demo.view.service.BaseUserService;
 
 @Controller
@@ -20,7 +21,7 @@ public class LoginController{
 	@RequestMapping(value="/index")
 	public String index() {
 		try {
-			baseUserService.get("AAA");
+			baseUserService.get(BaseUser.class, "AAA");
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
