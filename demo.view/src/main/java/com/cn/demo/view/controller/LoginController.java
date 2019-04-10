@@ -1,13 +1,11 @@
 package com.cn.demo.view.controller;
 
-import java.sql.SQLException;
-
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.cn.demo.view.model.BaseUser;
 import com.cn.demo.view.service.BaseUserService;
 
 @Controller
@@ -17,24 +15,23 @@ public class LoginController{
 	@Resource
 	private BaseUserService baseUserService;
 	
-	
+	/**
+	 * <p>Method: index</p>  
+	 * <p>Description: 登录页 </p>  
+	 */
 	@RequestMapping(value="/index")
 	public String index() {
-		try {
-			baseUserService.get(BaseUser.class, "AAA");
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+		
 		return "index";
 		
 	}
 	
 	
-	@RequestMapping(value="/login")
-	public void login() {
-		System.out.println("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&");
+	@GetMapping(value="/login")
+	public String login() {
 		
 		
+		return "main/main";
 	}
 	
 	

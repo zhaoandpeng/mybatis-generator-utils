@@ -1,5 +1,9 @@
 package com.cn.demo.view.security;
+import javax.annotation.Resource;
+
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -7,12 +11,18 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 @Configuration
 @EnableWebSecurity
 public class SpringSecurityConfig extends WebSecurityConfigurerAdapter  {
+	
+	
+	@Resource
+	private LocalUserDetailsService LocalUserDetailsService;
+	
+	private DaoAuthenticationProvider daoAuthenticationProvider;
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 			http.csrf().disable()
 				.authorizeRequests()
-				.antMatchers("/login","/image/**","/css/**","/layui*/**").permitAll()
+				.antMatchers("/image/**","/css/**","/layui*/**").permitAll()
 				.anyRequest().authenticated()
 				.and()
 				.formLogin().loginPage("/index")
@@ -30,18 +40,18 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter  {
      }
 	 
 	 
-	 
-	/*static class UserService implements UserDetailsService{
-
-		@Override
-		public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-			
-			User user = new User("1", "1", null);
-			
-			return user;
-		}
-		
-	}*/
+	 @Bean
+	 public DaoAuthenticationProvider authenticationProvider() {
+		 
+		 daoAuthenticationProvider = new DaoAuthenticationProvider();
+		 
+		 daoAuthenticationProvider.setUserDetailsService(LocalUserDetailsService);
+		 
+//		 daoAuthenticationProvider.se
+		 
+		 return daoAuthenticationProvider;
+	 }
+	
 	
 	
 }
